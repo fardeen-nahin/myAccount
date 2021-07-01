@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Income and Cost Counter</title>
+  </head>
+  <body>
+    <div id="login-area">
+      <h1 class="text-center">Welcome to Income and Cost Counter</h1>
+      <div class="submit-area">
+        <h4>Login</h4>
+        <input type="email" name="" class="form-control" placeholder="Enter Your Email" />
+        <br />
+        <input type="password" name="" class="form-control" placeholder="Enter Your Password" />
+        <br />
+        <button id="login" class="btn btn-success">Login</button>
+      </div>
+    </div>
+    <div id="transaction-area">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="diposit status">
+            <h5>Deposite</h5>
+            <h2>Tk. <span id="currentDiposite"> 00</span></h2>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="withdraw status">
+            <h5>Withdraw</h5>
+            <h2>Tk. 00</h2>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="balance status">
+            <h5>Balance</h5>
+            <h2>Tk. <span id="currentBanalance">1000</span></h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="submit-area">
+            <h4>Diposit</h4>
+            <input id="dipositeAmount" type="text" class="form-control" placeholder="Tk. What you want to Diposite" />
+            <br />
+            <button class="btn btn-success" id="add-diposite">Deposite</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="submit-area">
+            <h4>Withdraw</h4>
+            <input type="text" class="form-control" placeholder="Tk. What you want to Withdraw" />
+            <br />
+            <button class="btn btn-success">Withdraw</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // login button event handler
+      const loginButton = document.getElementById("login");
+      loginButton.addEventListener("click", function () {
+        document.getElementById("login-area").style.display = "none";
+        const trasactionArea = document.getElementById("transaction-area");
+        trasactionArea.style.display = "block";
+      });
+
+      //deposit button
+      const dipositeBtn = document.getElementById("add-diposite");
+      dipositeBtn.addEventListener("click", function () {
+          
+        const depositeAmount = document.getElementById("dipositeAmount").value;
+        const dipositeNumber = parseFloat(depositeAmount);
+
+        updateSpanText("currentDiposite", dipositeNumber);
+        updateSpanText("currentBanalance", dipositeNumber);
+        document.getElementById("dipositeAmount").value = ""
+      });
+
+      function updateSpanText(id, dipositeNumber) {
+        const current = document.getElementById(id).innerText;
+        const currentNumber = parseFloat(current);
+        const total = dipositeNumber + currentNumber;
+        document.getElementById(id).innerText = total;
+      }
+    </script>
+  </body>
+</html>
